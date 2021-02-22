@@ -10,6 +10,8 @@ import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
 
 public class AprenderCucumber {
+	private int contador = 0;
+	private Date entrega;
 
 	@Dado("^que criei o arquivo corretamente$")
 	public void que_criei_o_arquivo_corretamente() throws Throwable {
@@ -23,9 +25,6 @@ public class AprenderCucumber {
 	@Então("^a especificação deve finalizar com sucesso$")
 	public void a_especificação_deve_finalizar_com_sucesso() throws Throwable {
 	}
-
-	private int contador = 0;
-	private Date entrega;
 
 	@Dado("^que o valor do contador é (\\d+)$")
 	public void queOValorDoContadorÉ(int arg1) throws Throwable {
@@ -42,8 +41,7 @@ public class AprenderCucumber {
 		assertEquals(arg1, contador);
 	}
 
-	// Terceiro e Quarto teste
-
+//	 Terceiro e Quarto teste
 	@Dado("^que a entrega é dia (\\d+)/(\\d+)/(\\d+)$")
 	public void queAEntregaÉDia(int dia, int mes, int ano) throws Throwable {
 		Calendar cal = Calendar.getInstance();
@@ -53,16 +51,17 @@ public class AprenderCucumber {
 		entrega = cal.getTime();
 	}
 
+//  Só pode ser um desses valores (dia|dias|mes|meses) 
 	@Quando("^a entrega atrasar em (\\d+) (dia|dias|mes|meses)$")
-	public void aEntregaAtrasarEmDias(int arg, String tempo) throws Throwable {
+	public void aEntregaAtrasarEmDias(int qtds, String tempo) throws Throwable {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(entrega);
-		if(tempo.equals("dias")) {
-			cal.add(Calendar.DAY_OF_MONTH, arg);			
+		if (tempo.equals("dias")) {
+			cal.add(Calendar.DAY_OF_MONTH, qtds);
 		}
 
-		if(tempo.equals("meses")) {
-			cal.add(Calendar.MONTH, arg);			
+		if (tempo.equals("meses")) {
+			cal.add(Calendar.MONTH, qtds);
 		}
 		entrega = cal.getTime();
 	}
