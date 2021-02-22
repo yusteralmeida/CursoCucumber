@@ -29,13 +29,13 @@ Cenário: Deve calcular atraso na entrega da china
 		Quando a entrega atrasar em 2 meses
 		Então a entrega será efetuada em 05/06/2018
 		
-#Cenário: Deve criar steps genéricos para estes passos
-    #Dado que o ticket é AF345
-    #Dado que o valor da passagem é R$ 230,45
-    #Dado que o nome do passageiro é "Fulano da Silva"
-    #Dado que o telefone do passageiro é 9999-9999
-    #Quando criar os steps
-    #Então o teste vai funcionar
+Cenário: Deve criar steps genéricos para estes passos
+    Dado que o ticket é AF345
+    Dado que o valor da passagem é R$ 230,45
+    Dado que o nome do passageiro é "Fulano da Silva"
+    Dado que o telefone do passageiro é 9999-9999
+    Quando criar os steps
+    Então o teste vai funcionar
 
 #Tipos de respostas que serão mostradas no terminal, depois de executar os testes  
 #Passou, falhou, skipped, pending e undefined 
