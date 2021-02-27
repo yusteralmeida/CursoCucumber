@@ -1,3 +1,6 @@
+package br.ce.yuster.steps;
+
+import br.ce.yuster.converters.DateConverter;
 import static org.junit.Assert.assertEquals;
 
 import java.text.DateFormat;
@@ -5,11 +8,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import cucumber.api.Transform;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
 
-public class AprenderCucumber {
+public class AprenderCucumberSteps {
 	private int contador = 0;
 	private Date entrega;
 
@@ -41,14 +45,21 @@ public class AprenderCucumber {
 		assertEquals(arg1, contador);
 	}
 
-//	 Terceiro e Quarto teste
-	@Dado("^que a entrega é dia (\\d+)/(\\d+)/(\\d+)$")
-	public void queAEntregaÉDia(int dia, int mes, int ano) throws Throwable {
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.DAY_OF_MONTH, dia);
-		cal.set(Calendar.MONTH, mes - 1);// pq o java começa do zero os meses
-		cal.set(Calendar.YEAR, ano);
-		entrega = cal.getTime();
+//	Terceiro e Quarto teste
+//	@Dado("^que a entrega é dia (\\d+)/(\\d+)/(\\d+)$")
+//	public void queAEntregaÉDia(int dia, int mes, int ano) throws Throwable {
+//		Calendar cal = Calendar.getInstance();
+//		cal.set(Calendar.DAY_OF_MONTH, dia);
+//		cal.set(Calendar.MONTH, mes - 1);// pq o java começa do zero os meses
+//		cal.set(Calendar.YEAR, ano);
+//		entrega = cal.getTime();
+//
+//	}
+
+//	 Terceiro e Quarto teste. @Transform(DateConverter.class) joga data no método transform() da classe
+	@Dado("^que a entrega é dia (.*)$")
+	public void queAEntregaÉDia(@Transform(DateConverter.class) Date data) throws Throwable {
+		entrega = data;
 	}
 
 //  Só pode ser um desses valores (dia|dias|mes|meses) 
@@ -80,10 +91,11 @@ public class AprenderCucumber {
 	public void queOTicketÉAF(String tipo, String arg1) throws Throwable {
 	}
 
-	@Dado("^que o valor da passagem é R\\$ (\\d+),(\\d+)$")
-	public void queOValorDaPassagemÉR$(int arg1, int arg2) throws Throwable {
+	@Dado("^que o valor da passagem é R\\$ (.*)$")
+	public void queOValorDaPassagemÉR$(Double numero) throws Throwable {
+		System.out.println(numero);
 	}
-	
+
 //	Eh usado nome com minimo 5 e maximo 20 caracteres. Nao pode {5, 20}
 	@Dado("^que o nome do passageiro é \"(.{5,20})\"$")
 	public void queONomeDoPassageiroÉ(String arg1) throws Throwable {
