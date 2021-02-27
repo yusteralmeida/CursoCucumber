@@ -10,6 +10,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
 		features = "src/test/resources/features/aprender_cucumber.feature",
 		glue = "br.ce.yuster.steps",
+		tags = "~@ignore",
 		plugin = "pretty", // Comentarios no terminal
 		monochrome = true, // Terminal sem simbolos 
 		snippets = SnippetType.CAMELCASE,
