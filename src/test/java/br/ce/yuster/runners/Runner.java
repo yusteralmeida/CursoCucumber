@@ -8,9 +8,9 @@ import cucumber.api.junit.Cucumber;
 // Para usar o JUnit
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = "src/test/resources/features/aprender_cucumber.feature",
+		features = "src/test/resources/features/alugar_filmes.feature", // Qual feature será executada
 		glue = "br.ce.yuster.steps",
-		tags = "~@ignore",
+		tags = {},
 		plugin = "pretty", // Comentarios no terminal
 		monochrome = true, // Terminal sem simbolos 
 		snippets = SnippetType.CAMELCASE,
